@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>running</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      text-align: center;
+    }
+
+    canvas {
+      width: 100%;
+      max-width: 800px;
+      max-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="800" height="600"></canvas>
+
+  <script src="./scripts/pixi.js"></script>
+  <script src="./scripts/main.js"></script>
+  <script src="./scripts/background.js"></script>
+  <script>
+    document.body.onload = function () {
+      main = new Main();
+    }
+  </script>
+</body>
+</html>
