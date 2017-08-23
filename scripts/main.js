@@ -9,14 +9,17 @@ function Main () {
   this.background = new Background();
   this.stage.addChild(this.background);
 
+  // 保存当前位置
   this.positionX = 0;
 
   this.update();
 }
 
 Main.prototype.update = function () {
+  // 渲染舞台
   this.renderer.render(this.stage);
 
+  // 修改距离，进行移动
   this.positionX += 10;
   this.background.moveByX(this.positionX);
 
