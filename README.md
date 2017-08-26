@@ -1,2 +1,1 @@
-# running
-A small game.
+第一章实现无限滚动的背景图片
