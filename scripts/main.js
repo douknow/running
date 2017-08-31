@@ -24,4 +24,4 @@ Main.prototype.update = function () {
   this.background.moveByX(this.positionX);
 
   requestAnimationFrame(this.update.bind(this));
-}
+};

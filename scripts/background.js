@@ -13,4 +13,4 @@ Background.prototype.moveByX = function (newPositionX) {
   var distance = newPositionX - this.oldPositionX;
   this.tilePosition.x -= distance;
   this.oldPositionX = newPositionX;
-}
+};
