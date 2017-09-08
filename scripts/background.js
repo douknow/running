@@ -11,6 +11,6 @@ Background.prototype = Object.create(PIXI.extras.TilingSprite.prototype);
 
 Background.prototype.moveByX = function (newPositionX) {
   var distance = newPositionX - this.oldPositionX;
-  this.tilePosition.x -= distance;
+  this.tilePosition.x -= distance * .26;
   this.oldPositionX = newPositionX;
 };

@@ -25,7 +25,6 @@ Main.prototype.init = function () {
   this.background = new Background();
   this.stage.addChild(this.background);
 
-  // test
   this.ground = new Ground(this.stage);
 
   this.update();
@@ -35,9 +34,14 @@ Main.prototype.update = function () {
   // 渲染舞台
   this.renderer.render(this.stage);
 
-  // 修改距离，进行移动
+  // 修改距离
   this.positionX += 10;
+
+  // 移动背景
   this.background.moveByX(this.positionX);
+
+  // 移动地面
+  this.ground.moveByX(this.positionX);
 
   requestAnimationFrame(this.update.bind(this));
 };
