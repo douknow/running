@@ -25,6 +25,8 @@
     },
     "globals": {
         "PIXI": false,
-        "Background": false
+        "Background": false,
+        "Ground": false,
+        "GROUND_TYPE": false
     }
 }

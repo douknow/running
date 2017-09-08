@@ -1,5 +1,5 @@
 function Background () {
-  var backTexture = PIXI.Texture.fromImage('./images/Background.png');
+  var backTexture = PIXI.Texture.fromImage('background');
   PIXI.extras.TilingSprite.call(this, backTexture, 800, 600);
 
   // 保存上一次位置

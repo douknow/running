@@ -6,14 +6,30 @@ function Main () {
     { view: document.getElementById('canvas') }
   );
 
+  // 保存当前位置
+  this.positionX = 0;
+  
+  this.loadImages();  
+}
+
+// 加载游戏中的资源文件
+Main.prototype.loadImages = function () {
+  var loader = new PIXI.loaders.Loader();
+  loader.add('background', './images/background.png')
+        .add('Tile', './_images/ground.json');
+  loader.load(this.init.bind(this));
+};
+
+// 游戏初始化
+Main.prototype.init = function () {
   this.background = new Background();
   this.stage.addChild(this.background);
 
-  // 保存当前位置
-  this.positionX = 0;
+  // test
+  this.ground = new Ground(this.stage);
 
   this.update();
-}
+};
 
 Main.prototype.update = function () {
   // 渲染舞台
