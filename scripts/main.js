@@ -16,7 +16,7 @@ function Main () {
 Main.prototype.loadImages = function () {
   var loader = new PIXI.loaders.Loader();
   loader.add('background', './images/background.png')
-        .add('Tile', './_images/ground.json');
+        .add('Tile', './images/ground.json');
   loader.load(this.init.bind(this));
 };
 
