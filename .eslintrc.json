@@ -26,6 +26,7 @@
     "globals": {
         "PIXI": false,
         "Background": false,
-        "Ground": false
+        "Ground": false,
+        "Role": false
     }
 }

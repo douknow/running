@@ -16,7 +16,8 @@ function Main () {
 Main.prototype.loadImages = function () {
   var loader = new PIXI.loaders.Loader();
   loader.add('background', './images/background.png')
-        .add('Tile', './images/ground.json');
+        .add('Tile', './images/ground.json')
+        .add('role', './images/role.json');
   loader.load(this.init.bind(this));
 };
 
@@ -25,7 +26,11 @@ Main.prototype.init = function () {
   this.background = new Background();
   this.stage.addChild(this.background);
 
+  // 创建地面
   this.ground = new Ground(this.stage);
+
+  // 创建角色
+  this.role = new Role(this.stage);
 
   this.update();
 };
