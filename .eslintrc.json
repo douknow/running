@@ -27,6 +27,7 @@
         "PIXI": false,
         "Background": false,
         "Ground": false,
-        "Role": false
+        "Role": false,
+        "collision": false
     }
 }

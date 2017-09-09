@@ -1,5 +1,10 @@
-function Role (stage) {
+function Role (stage, grounds) {
   this.stage = stage;
+  this.grounds = grounds;
+
+  this.speedY = 0;
+  this.gracity = 10;
+  
   // 显示当前角色
   this.container = new PIXI.Container();
   this.container.scale.set(1.5, 1.5);
@@ -10,6 +15,13 @@ function Role (stage) {
   this.addToStage();
   this.jumping();
 }
+
+Role.prototype.update = function () {
+  this.speedY += this.gracity;
+  
+  this.getCollisiopn();
+  this.container.position.y += this.speedY;
+};
 
 Role.prototype.addToStage = function () {
   this.statuses.forEach(function (status) {
@@ -58,5 +70,14 @@ Role.prototype.hideOtherStatus = function (status) {
   this.statuses.forEach(function (s) {
     if (s !== status) s.visible = false;
     else s.visible = true;
+  }.bind(this));
+};
+
+// 判断角色是否与地面发生了碰撞
+Role.prototype.getCollisiopn = function () {
+  this.grounds.forEach(function (ground) {
+    if (ground.visible && collision(this.container, ground)) {
+      this.speedY = 0;
+    }
   }.bind(this));
 };

@@ -28,9 +28,10 @@ Main.prototype.init = function () {
 
   // 创建地面
   this.ground = new Ground(this.stage);
+  this.grounds = this.ground.grounds;
 
   // 创建角色
-  this.role = new Role(this.stage);
+  this.role = new Role(this.stage, this.grounds);
 
   this.update();
 };
@@ -47,6 +48,9 @@ Main.prototype.update = function () {
 
   // 移动地面
   this.ground.moveByX(this.positionX);
+
+  // 更新角色
+  this.role.update();
 
   requestAnimationFrame(this.update.bind(this));
 };
