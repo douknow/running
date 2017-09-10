@@ -33,13 +33,6 @@ Main.prototype.init = function () {
   // 创建角色
   this.role = new Role(this.stage, this.grounds);
 
-  // 测试
-  // this.graphics = new PIXI.Graphics();
-  
-  // this.graphics.lineStyle(1, 0xFF0000);
-  
-  // this.stage.addChild(this.graphics);
-
   this.update();
 };
 

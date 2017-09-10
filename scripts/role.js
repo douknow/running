@@ -17,8 +17,6 @@ function Role (stage, grounds) {
   this.statuses = [];
   // 保存角色当前状态
   this.status;
-  // 角色的前一贞位置
-  this.prePositionY = -1;
 
   this.isCollision = null;
 
@@ -29,7 +27,6 @@ function Role (stage, grounds) {
   this.jumping();
 }
 
-Role.STAND = 1;
 Role.JUMP = 2;
 Role.RUN = 3;
 
@@ -38,7 +35,6 @@ Role.prototype.update = function () {
   
   this.container.position.y += this.speedY;
   this.getCollisiopn();
-  if (this.prePositionY < this.container.y) this.prePositionY = this.container.position.y;
 };
 
 Role.prototype.addToStage = function () {
@@ -46,12 +42,6 @@ Role.prototype.addToStage = function () {
     this.container.addChild(status);
   }.bind(this));
   this.stage.addChild(this.container);
-};
-
-// 切换为站立状态
-Role.prototype.standing = function () {
-  this.hideOtherStatus(this.stand);
-  this.status = Role.STAND;
 };
 
 // 切换为跑步状态
@@ -68,10 +58,6 @@ Role.prototype.jumping = function () {
 
 // 角色状态初始化
 Role.prototype.init = function () {
-  // 创建站立状态
-  this.stand = PIXI.Sprite.fromFrame('role_1.png');
-  this.statuses.push(this.stand);
-
   // 创建跳跃状态
   this.jump = PIXI.Sprite.fromFrame('role_2.png');
   this.statuses.push(this.jump);
