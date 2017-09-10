@@ -28,6 +28,11 @@ Ground.prototype.createRandomGround = function (x) {
     var ground = this.CreateGround(spans, type);
     ground.position.x = x;
     ground.position.y = y;
+    // 设置碰撞矩形
+    ground.offsetRect = {
+      x: 88, y: 107, width: -185, height: -118
+    };
+
     x += ground.width;
     this.grounds.push(ground);
   }

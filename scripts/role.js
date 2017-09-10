@@ -2,25 +2,43 @@ function Role (stage, grounds) {
   this.stage = stage;
   this.grounds = grounds;
 
+  // 设置碰撞矩形
+  this.offsetRect = {
+    x: 5, y: 0, width: -5, height: 0
+  };
+
   this.speedY = 0;
-  this.gracity = 10;
+  this.gracity = 3;
   
   // 显示当前角色
   this.container = new PIXI.Container();
   this.container.scale.set(1.5, 1.5);
   // 保存角色的所有状态
   this.statuses = [];
+  // 保存角色当前状态
+  this.status;
+  // 角色的前一贞位置
+  this.prePositionY = -1;
+
+  this.isCollision = null;
 
   this.init();
+  this.addKeyListener();
   this.addToStage();
+  
   this.jumping();
 }
+
+Role.STAND = 1;
+Role.JUMP = 2;
+Role.RUN = 3;
 
 Role.prototype.update = function () {
   this.speedY += this.gracity;
   
-  this.getCollisiopn();
   this.container.position.y += this.speedY;
+  this.getCollisiopn();
+  if (this.prePositionY < this.container.y) this.prePositionY = this.container.position.y;
 };
 
 Role.prototype.addToStage = function () {
@@ -33,16 +51,19 @@ Role.prototype.addToStage = function () {
 // 切换为站立状态
 Role.prototype.standing = function () {
   this.hideOtherStatus(this.stand);
+  this.status = Role.STAND;
 };
 
 // 切换为跑步状态
 Role.prototype.running = function () {
   this.hideOtherStatus(this.run);
+  this.status = Role.RUN;
 };
 
 // 切换为跳跃状态
 Role.prototype.jumping = function () {
   this.hideOtherStatus(this.jump);
+  this.status = Role.JUMP;
 };
 
 // 角色状态初始化
@@ -75,9 +96,33 @@ Role.prototype.hideOtherStatus = function (status) {
 
 // 判断角色是否与地面发生了碰撞
 Role.prototype.getCollisiopn = function () {
+  this.isCollision = null;
   this.grounds.forEach(function (ground) {
-    if (ground.visible && collision(this.container, ground)) {
-      this.speedY = 0;
+    if (ground.parent && this.isCollision === null) {
+      this.isCollision = collision(this.container, this.offsetRect, ground, ground.offsetRect);
     }
   }.bind(this));
+  if (this.isCollision) {
+    if (this.isCollision.one.x + this.isCollision.one.width >= this.isCollision.two.x && this.isCollision.one.y < this.isCollision.two.y) {
+      // 设置碰撞时角色的速度  和   正确位置
+      this.speedY = 0;
+      this.container.position.y = this.isCollision.two.y - this.isCollision.one.height;
+      if (this.status === Role.JUMP) {
+        this.running();
+      }
+    } else {
+      // 撞上了，
+      this.container.position.x = this.isCollision.two.x - this.isCollision.one.width;
+    }
+  }
+};
+
+// 添加键盘控制
+Role.prototype.addKeyListener = function () {
+  window.addEventListener('keypress', function (key) {
+    if (key.keyCode === 32 && this.status === Role.RUN) {
+      this.jumping();
+      this.speedY = -40;
+    }
+  }.bind(this), false);
 };
