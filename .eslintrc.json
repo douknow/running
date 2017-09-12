@@ -28,6 +28,8 @@
         "Background": false,
         "Ground": false,
         "Role": false,
-        "collision": false
+        "collision": false,
+        "Main": false,
+        "Game": false
     }
 }

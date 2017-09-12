@@ -23,6 +23,8 @@ Main.prototype.loadImages = function () {
 
 // 游戏初始化
 Main.prototype.init = function () {
+  this.game = new Game();
+  
   this.background = new Background();
   this.stage.addChild(this.background);
 
@@ -40,17 +42,22 @@ Main.prototype.update = function () {
   // 渲染舞台
   this.renderer.render(this.stage);
 
-  // 修改距离
-  this.positionX += 10;
-
-  // 移动背景
-  this.background.moveByX(this.positionX);
-
-  // 移动地面
-  this.ground.moveByX(this.positionX);
-
-  // 更新角色
-  this.role.update();
+  if (this.game.game) {
+    // 修改距离
+    this.positionX += 10;
+  
+    // 移动背景
+    this.background.moveByX(this.positionX);
+  
+    // 移动地面
+    this.ground.moveByX(this.positionX);
+  
+    // 更新角色
+    this.role.update(this.game);
+  } else {
+    // gameover
+    this.game.drawGameOverText(this.stage, this.positionX);
+  }
 
   requestAnimationFrame(this.update.bind(this));
 };

@@ -30,10 +30,15 @@ function Role (stage, grounds) {
 Role.JUMP = 2;
 Role.RUN = 3;
 
-Role.prototype.update = function () {
+Role.prototype.update = function (game) {
   this.speedY += this.gracity;
   
   this.container.position.y += this.speedY;
+
+  // 当角色的 y 坐标大于600时 视为游戏结束
+  if (this.container.y > 600) {
+    game.over();
+  }  
   this.getCollisiopn();
 };
 
