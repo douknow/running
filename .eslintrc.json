@@ -30,6 +30,7 @@
         "Role": false,
         "collision": false,
         "Main": false,
-        "Game": false
+        "Game": false,
+        "Button": false
     }
 }

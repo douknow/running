@@ -48,5 +48,8 @@ Game.prototype.drawGameOverText = function (stage, positionX) {
     this.gameoverText.x = 400 - this.gameoverText.width / 2;
     this.gameoverText.y = 300 - this.gameoverText.height;
     stage.addChild(this.gameoverText);
+
+    var restartButton = new Button('重新开始');
+    stage.addChild(restartButton);
   }
 };
