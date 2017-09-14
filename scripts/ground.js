@@ -1,10 +1,13 @@
-function Ground (stage) {
-  this.stage = stage;
+function Ground () {
+  PIXI.Container.call(this);
+
   this.grounds = [];
   this.prePositionX = 0;
 
   this.createRandomGround();
 }
+
+Ground.prototype = Object.create(PIXI.Container.prototype);
 
 Ground.RECTANGLE = 1;
 Ground.CRICLE = 2;
@@ -46,11 +49,11 @@ Ground.prototype.moveByX = function (newPositionX) {
     ground.position.x -= distance;
     // 当地面超过左边边界时从舞台上移除
     if (ground.x + ground.width < 0 && ground.parent) {
-      this.stage.removeChild(ground);
+      this.removeChild(ground);
     }
     // 当地面在画面中时 将其添加到舞台上
     if (ground.x < 800 && ground.x + ground.width > 0 && ground.parent === null) {
-      this.stage.addChild(ground);
+      this.addChild(ground);
     }
 
     // 如果最后一块地面 出现在画面中，则继续添加地面
