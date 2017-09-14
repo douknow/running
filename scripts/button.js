@@ -1,5 +1,10 @@
-function Button (text) {
+function Button (text, click) {
   PIXI.Container.call(this);
+
+  this.click = click;
+
+  this.interactive = true;
+  this.buttonMode = true;
 
   this.graphics = new PIXI.Graphics();
   this.addChild(this.graphics);
@@ -7,6 +12,7 @@ function Button (text) {
   this.graphics.lineStyle(4, 0xffffff, 1);
   this.graphics.drawRoundedRect(4, 4, 170, 60, 10);
 
+  // 按钮中字体样式
   this.style = new PIXI.TextStyle({
     fontFamily: 'Arial',
     fontSize: 26,
@@ -20,6 +26,28 @@ function Button (text) {
   this.text.y = this.height / 2 - this.text.height / 2;
 
   this.addChild(this.text);
+
+  // 设置坐标及缩放中心
+  this.pivot.x = this.width / 2;
+  this.pivot.y = this.height / 2;
+
+  this.addSomeEvent();
 }
 
 Button.prototype = Object.create(PIXI.Container.prototype);
+
+// 添加事件
+Button.prototype.addSomeEvent = function () {
+  this.on('click', function () {
+    // 重新开始游戏
+    this.click();
+  }.bind(this));
+
+  this.on('mouseover', function () {
+    this.scale.set(1.1);
+  }.bind(this));
+
+  this.on('mouseout', function () {
+    this.scale.set(1);
+  }.bind(this));
+};

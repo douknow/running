@@ -5,9 +5,8 @@ function Main () {
     600,
     { view: document.getElementById('canvas') }
   );
-
-  // 保存当前位置
-  this.positionX = 0;
+  
+  this.game = new Game(this);
   
   this.loadImages();  
 }
@@ -23,7 +22,8 @@ Main.prototype.loadImages = function () {
 
 // 游戏初始化
 Main.prototype.init = function () {
-  this.game = new Game();
+  // 保存当前位置
+  this.positionX = 0;
   
   this.background = new Background();
   this.stage.addChild(this.background);

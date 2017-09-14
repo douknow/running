@@ -1,4 +1,5 @@
-function Game () {
+function Game (main) {
+  this.main = main;
   this.game = true;
   this.score = 0;  
 
@@ -49,7 +50,15 @@ Game.prototype.drawGameOverText = function (stage, positionX) {
     this.gameoverText.y = 300 - this.gameoverText.height;
     stage.addChild(this.gameoverText);
 
-    var restartButton = new Button('重新开始');
+    var restartButton = new Button('重新开始', this.restart.bind(this));
+    restartButton.x = 400;
+    restartButton.y = 300 + 50;
     stage.addChild(restartButton);
   }
+};
+
+Game.prototype.restart = function () {
+  this.game = true;
+  this.main.stage.removeChildren();
+  this.main.init();
 };
