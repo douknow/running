@@ -22,7 +22,7 @@ Main.prototype.loadImages = function () {
   // 创建加载器对象
   var loader = new PIXI.loaders.Loader();
   // 添加需要加载的图片文件
-  loader.add('background', './images/background.png')
+  loader.add('background', './images/Background.png')
         .add('Tile', './images/ground.json')
         .add('role', './images/role.json');
   // 开始加载，并在加载完成后调用 init 函数
