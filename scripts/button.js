@@ -43,6 +43,10 @@ Button.prototype.addSomeEvent = function () {
     this.click();
   }.bind(this));
 
+  this.on('touchstart', function () {
+    this.click();
+  }.bind(this));
+
   // 鼠标移入时放大按钮
   this.on('mouseover', function () {
     this.scale.set(1.1);

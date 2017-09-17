@@ -50,7 +50,7 @@ Game.prototype.over = function () {
 
 Game.prototype.ready = function () {
   if (!this.readyText) {
-    this.readyText = new PIXI.Text('按空格键开始游戏以及进行跳跃', this.style);
+    this.readyText = new PIXI.Text('按空格键开始游戏以及进行跳跃\n手机端请点击游戏界面', this.style);
     this.readyText.anchor.set(.5);
     this.readyText.position.set(400, 300);
 
@@ -58,6 +58,13 @@ Game.prototype.ready = function () {
       if (key.keyCode === 32 && this.status === Game.READY) {
         this.status = Game.RUN;
         this.main.stage.removeChild(this.readyText);
+      }
+    }.bind(this), false);
+
+    window.addEventListener('touchstart', function () {
+      if (this.status === Game.READY) {
+        this.status = Game.RUN;
+	this.main.stage.removeChild(this.readyText);
       }
     }.bind(this), false);
     

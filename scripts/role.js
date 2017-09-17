@@ -123,4 +123,11 @@ Role.prototype.addKeyListener = function () {
       this.speedY = -40;
     }
   }.bind(this), false);
+
+  window.addEventListener('touchstart', function () {
+    if (this.status === Role.RUN) {
+      this.jumping();
+      this.speedY = -40;
+    }
+  }.bind(this), false);
 };
