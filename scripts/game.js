@@ -1,4 +1,5 @@
 function Game (main) {
+  // 设置游戏默认状态为准备状态
   this.status = Game.READY;
   this.main = main;
   this.score = 0;
@@ -32,6 +33,7 @@ function Game (main) {
     wordWrap: true,
     // 文字换行宽度
     wordWrapWidth: 440,
+    // 文字对齐方式
     align: 'center'
   });
 

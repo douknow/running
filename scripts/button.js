@@ -22,8 +22,8 @@ function Button (text, click) {
     strokeThickness: 5,
   });
   this.text = new PIXI.Text(text, this.style);
-  this.text.x = this.width / 2 - this.text.width / 2;
-  this.text.y = this.height / 2 - this.text.height / 2;
+  this.text.anchor.set(.5, .5);
+  this.text.position.set(this.width / 2, this.height / 2);
 
   this.addChild(this.text);
 
@@ -43,10 +43,12 @@ Button.prototype.addSomeEvent = function () {
     this.click();
   }.bind(this));
 
+  // 鼠标移入时放大按钮
   this.on('mouseover', function () {
     this.scale.set(1.1);
   }.bind(this));
 
+  // 鼠标移出时恢复按钮
   this.on('mouseout', function () {
     this.scale.set(1);
   }.bind(this));
